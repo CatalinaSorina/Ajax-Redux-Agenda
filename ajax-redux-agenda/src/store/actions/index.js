@@ -27,3 +27,39 @@ export const getContacts = () => dispatch => {
       dispatch({ type: types.CONTACTS_FAIL, payload: error });
     });
 };
+
+export const addContact = contact => dispatch => {
+  dispatch({ type: types.CONTACTS_CONNECT });
+  axiosAuth()
+    .post("http://localhost:3330/api/friends/", contact)
+    .then(result => {
+      dispatch({ type: types.CONTACTS_SUCCES, payload: result.data.data });
+    })
+    .catch(error => {
+      dispatch({ type: types.CONTACTS_FAIL, payload: error });
+    });
+};
+
+export const deleteContact = idContact => dispatch => {
+  dispatch({ type: types.CONTACTS_CONNECT });
+  axiosAuth()
+    .delete(`http://localhost:3330/api/friends/${idContact}`)
+    .then(result => {
+      dispatch({ type: types.CONTACTS_SUCCES, payload: result.data.data });
+    })
+    .catch(error => {
+      dispatch({ type: types.CONTACTS_FAIL, payload: error });
+    });
+};
+
+export const updateContact = contact => dispatch => {
+  dispatch({ type: types.CONTACTS_CONNECT });
+  axiosAuth()
+    .put(`http://localhost:3330/api/friends/${contact.id}`,contact)
+    .then(result => {
+      dispatch({ type: types.CONTACTS_SUCCES, payload: result.data.data });
+    })
+    .catch(error => {
+      dispatch({ type: types.CONTACTS_FAIL, payload: error });
+    });
+};
