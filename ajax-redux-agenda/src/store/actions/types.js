@@ -1,0 +1,7 @@
+export const LOG_CONNECT = "LOG_CONNECT";
+export const LOG_SUCCES = "LOG_SUCCES";
+export const LOG_FAIL = "LOG_FAIL";
+
+export const CONTACTS_CONNECT = "CONTACTS_CONNECT";
+export const CONTACTS_SUCCES = "CONTACTS_SUCCES";
+export const CONTACTS_FAIL = "CONTACTS_FAIL";
