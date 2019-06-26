@@ -4,13 +4,17 @@ import { connect } from "react-redux";
 
 import Loader from "react-loader-spinner";
 
-import { getContacts } from "../store/actions/index";
+import { getContacts, deleteContact } from "../store/actions/index";
 import Contact from "./Contact";
 
 class Agenda extends React.Component {
   componentDidMount() {
     this.props.getContacts();
   }
+
+  deleteContact = id => {
+    this.props.deleteContact(id);
+  };
 
   render() {
     return localStorage.getItem("token") ? (
@@ -26,7 +30,13 @@ class Agenda extends React.Component {
         {this.props.loadContacts === false &&
           this.props.contacts &&
           this.props.contacts.map(contact => {
-            return <Contact key={contact.id} contact={contact} />;
+            return (
+              <Contact
+                key={contact.id}
+                contact={contact}
+                deleteContact={()=>this.deleteContact(contact.id)}
+              />
+            );
           })}
       </div>
     ) : (
@@ -50,5 +60,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getContacts }
+  { getContacts, deleteContact }
 )(Agenda);

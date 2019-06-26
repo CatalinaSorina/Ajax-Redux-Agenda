@@ -6,6 +6,7 @@ const Contact = props => {
       <label>{props.contact.name}</label>
       <label>Age: {props.contact.age}</label>
       <label>Email: {props.contact.email}</label>
+      <button onClick={props.deleteContact}>Delete contact</button>
     </div>
   );
 };
