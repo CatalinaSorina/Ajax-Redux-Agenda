@@ -38,11 +38,11 @@ export const addContact = contact => dispatch => {
   axiosAuth()
     .post("http://localhost:3330/api/friends/", contact)
     .then(result => {
-      console.log("Action add contacts succes: ", result.data);
+      console.log("Action add contact succes: ", result.data);
       dispatch({ type: types.CONTACTS_SUCCES, payload: result.data });
     })
     .catch(error => {
-      console.log("Action add contacts fail: ", error);
+      console.log("Action add contact fail: ", error);
       dispatch({ type: types.CONTACTS_FAIL, payload: error });
     });
 };

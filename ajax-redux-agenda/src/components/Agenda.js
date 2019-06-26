@@ -13,17 +13,25 @@ class Agenda extends React.Component {
   }
 
   render() {
-    return (
+    return localStorage.getItem("token") ? (
       <div className="agenda">
-        {this.props.error === true && <label>You are not logged.</label>}
         {this.props.loadContacts === true && (
-          <Loader type="Oval" color="yellow" height={80} width={80} />
+          <Loader
+            type="Oval"
+            color="rgb(252, 198, 98)"
+            height={80}
+            width={80}
+          />
         )}
         {this.props.loadContacts === false &&
           this.props.contacts &&
           this.props.contacts.map(contact => {
             return <Contact key={contact.id} contact={contact} />;
           })}
+      </div>
+    ) : (
+      <div className="agenda">
+        {this.props.error === true && <label>You are not logged.</label>}
       </div>
     );
   }
@@ -34,7 +42,6 @@ const mapStateToProps = state => {
   return {
     loadContacts: state.reducerAgenda.loadContacts,
     contacts: state.reducerAgenda.contacts,
-    addContact: state.reducerAgenda.addContact,
     deleteContact: state.reducerAgenda.deleteContact,
     updateContact: state.reducerAgenda.updateContact,
     error: state.reducerAgenda.error

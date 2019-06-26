@@ -45,6 +45,7 @@ class Authentication extends React.Component {
           <label>Password:</label>
           <input
             name="password"
+            type="password"
             onChange={this.getData}
             placeholder="your password"
           />
