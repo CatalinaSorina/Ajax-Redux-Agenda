@@ -6,19 +6,32 @@ const initialState = {
   addContact: false,
   deleteContact: false,
   updateContact: false,
-  error: null
+  error: false
 };
 
-export const reducerAgenda = (state = initialState, action) => {
+export const reducerAgenda = (stateAgenda = initialState, action) => {
+  // console.log(stateAgenda);
   switch (action.type) {
     case types.CONTACTS_CONNECT:
       return {
-        ...state,
+        ...stateAgenda,
         loadContacts: true
+      };
+    case types.CONTACTS_SUCCES:
+      return {
+        ...stateAgenda,
+        loadContacts: false,
+        contacts: action.payload
+      };
+    case types.CONTACTS_FAIL:
+      return {
+        ...stateAgenda,
+        loadContacts: false,
+        error: true
       };
     default:
       return {
-        state
+        stateAgenda
       };
   }
 };
