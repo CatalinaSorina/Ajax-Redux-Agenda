@@ -1,5 +1,4 @@
 import React from "react";
-
 import { connect } from "react-redux";
 
 import Loader from "react-loader-spinner";
@@ -34,7 +33,8 @@ class Agenda extends React.Component {
               <Contact
                 key={contact.id}
                 contact={contact}
-                deleteContact={()=>this.deleteContact(contact.id)}
+                deleteContact={() => this.deleteContact(contact.id)}
+                modifyContact={() => this.props.modifyContact(contact)}
               />
             );
           })}
