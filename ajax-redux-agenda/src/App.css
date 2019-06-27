@@ -63,3 +63,32 @@ a:active {
 .auth button:hover {
   color: yellow;
 }
+
+.modify {
+  background: none;
+  border: none;
+  color: orange;
+  border-radius: 20%;
+}
+.modify:hover {
+  color: darkorange;
+  background: rgb(221, 208, 183);
+}
+
+.delete {
+  background: none;
+  border: none;
+  color: lightcoral;
+  border-radius: 20%;
+}
+.delete:hover {
+  color: red;
+  background: rgb(218, 171, 171);
+}
+
+.modify:active,
+.delete:active {
+  background: rgb(20, 67, 110);
+  border: 0.1rem solid rgb(7, 23, 39);
+  outline: none;
+}

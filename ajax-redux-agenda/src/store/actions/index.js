@@ -23,7 +23,7 @@ export const getContacts = () => dispatch => {
   console.log(types.CONTACTS_CONNECT);
   dispatch({ type: types.CONTACTS_CONNECT });
   axiosAuth()
-    .get("http://localhost:3330/api/friends")
+    .get(`${url.contactsUrl}`)
     .then(result => {
       console.log("Action contacts succes: ", result.data);
       dispatch({ type: types.CONTACTS_SUCCES, payload: result.data });
@@ -37,7 +37,7 @@ export const getContacts = () => dispatch => {
 export const addContact = contact => dispatch => {
   dispatch({ type: types.ADD_CONTACT });
   axiosAuth()
-    .post("http://localhost:3330/api/friends/", contact)
+    .post(`${url.contactsUrl}`, contact)
     .then(result => {
       console.log("Action add contact succes: ", result.data);
       dispatch({ type: types.ADD_CONTACT_SUCCES, payload: result.data });
@@ -51,7 +51,7 @@ export const addContact = contact => dispatch => {
 export const deleteContact = idContact => dispatch => {
   dispatch({ type: types.REMOVE_CONTACT });
   axiosAuth()
-    .delete(`http://localhost:3330/api/friends/${idContact}`)
+    .delete(`${url.contactsUrl}/${idContact}`)
     .then(result => {
       console.log("Action remove contact succes: ", result.data);
       dispatch({ type: types.REMOVE_CONTACT_SUCCES, payload: result.data });
@@ -65,7 +65,7 @@ export const deleteContact = idContact => dispatch => {
 export const updateContact = contact => dispatch => {
   dispatch({ type: types.UPDATE_CONTACT });
   axiosAuth()
-    .put(`http://localhost:3330/api/friends/${contact.id}`, contact)
+    .put(`${url.contactsUrl}/${contact.id}`, contact)
     .then(result => {
       console.log("Action update contact succes: ", result.data);
       dispatch({ type: types.UPDATE_CONTACT_SUCCES, payload: result.data });

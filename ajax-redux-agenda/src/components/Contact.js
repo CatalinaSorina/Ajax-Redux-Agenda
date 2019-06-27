@@ -6,8 +6,14 @@ const Contact = props => {
       <label>{props.contact.name}</label>
       <label>Age: {props.contact.age}</label>
       <label>Email: {props.contact.email}</label>
-      <button onClick={props.deleteContact}>Delete contact</button>
-      <button onClick={props.modifyContact}>Modify contact</button>
+      <div>
+        <button className="modify" onClick={props.modifyContact}>
+          Modify contact
+        </button>
+        <button className="delete" onClick={props.deleteContact}>
+          Delete contact
+        </button>
+      </div>
     </div>
   );
 };
