@@ -7,6 +7,10 @@ import { getContacts, deleteContact } from "../store/actions/index";
 import Contact from "./Contact";
 
 class Agenda extends React.Component {
+  state = {
+    filterContacts: null
+  };
+
   componentDidMount() {
     this.props.getContacts();
   }
@@ -15,9 +19,37 @@ class Agenda extends React.Component {
     this.props.deleteContact(id);
   };
 
+  search = e => {
+    const text = e.target.value;
+    const filterContacts = this.props.contacts.filter(contact => {
+      return (
+        text.toLowerCase().includes(contact.name.toLowerCase()) ||
+        contact.name.toLowerCase().includes(text.toLowerCase())
+      );
+    });
+    this.setState({
+      filterContacts: filterContacts
+    });
+  };
+
   render() {
     return localStorage.getItem("token") ? (
       <div className="agenda">
+        <span>
+          <label>Name: </label>
+          <input
+            list="contacts"
+            className="search"
+            placeholder="search contact"
+            onChange={this.search}
+          />
+        </span>
+        <datalist id="contacts">
+          {this.props.contacts &&
+            this.props.contacts.map(contact => {
+              return <option>{contact.name}</option>;
+            })}
+        </datalist>
         {this.props.loadContacts === true && (
           <Loader
             type="Oval"
@@ -27,8 +59,8 @@ class Agenda extends React.Component {
           />
         )}
         {this.props.loadContacts === false &&
-          this.props.contacts &&
-          this.props.contacts.map(contact => {
+          this.state.filterContacts &&
+          this.state.filterContacts.map(contact => {
             return (
               <Contact
                 key={contact.id}
