@@ -1,12 +1,18 @@
-import react from "react";
+import React from "react";
+
+import { connect } from "react-redux";
+
+import { login } from "../store/actions/index";
+import Loader from "react-loader-spinner";
 
 class Authentication extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      username: "",
-      password: ""
-    };
+  state = {
+    username: "",
+    password: ""
+  };
+
+  componentDidMount() {
+    localStorage.clear();
   }
 
   getData = e => {
@@ -14,21 +20,24 @@ class Authentication extends React.Component {
       ...this.state,
       [e.target.name]: e.target.value
     });
+    // console.log("Updated state:", this.state);
   };
 
-  login = e => {
-    e.preventDefault();
+  loginAction = e => {
+    // e.preventDefault();
+    // console.log("Original state:", this.state);
     this.props.login(this.state);
+    // if (this.props.logged === true) this.props.history.push("/agenda");
   };
 
   render() {
     return (
-      <form className="auth">
+      <form className="auth" onSubmit={this.loginAction} action="/agenda">
         <div>
           <label>Name:</label>
           <input
             name="username"
-            onClick={this.getData}
+            onChange={this.getData}
             placeholder="your user name"
           />
         </div>
@@ -36,13 +45,14 @@ class Authentication extends React.Component {
           <label>Password:</label>
           <input
             name="password"
-            onClick={this.getData}
+            type="password"
+            onChange={this.getData}
             placeholder="your password"
           />
         </div>
-        <button onClick={this.login}>
-          {this.props.logged ? (
-            <Loader type="Grid" color="#somecolor" height={80} width={80} />
+        <button>
+          {this.props.logged === true ? (
+            <Loader type="ThreeDots" color="white" height={80} width={80} />
           ) : (
             "Log in"
           )}
@@ -52,4 +62,16 @@ class Authentication extends React.Component {
   }
 }
 
-export default Authentication;
+const mapStateToProps = state => {
+  // console.log("State login from redux: ", state.reducerAuth);
+  return {
+    loading: state.reducerAuth.loading,
+    logged: state.reducerAuth.logged,
+    error: state.reducerAuth.error
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(Authentication);

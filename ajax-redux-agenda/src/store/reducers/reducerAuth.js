@@ -1,32 +1,33 @@
 import * as types from "../actions/types";
 
-const initialState = {
+const reducerAuthInitialState = {
   loading: false,
   logged: false,
-  error: null
+  error: false
 };
 
-export const reducerAuth = (state = initialState, action) => {
+export const reducerAuth = (stateAuth = reducerAuthInitialState, action) => {
+  // console.log(stateAuth);
   switch (action.type) {
     case types.LOG_CONNECT:
       return {
-        ...state,
+        ...stateAuth,
         loading: true
       };
     case types.LOG_SUCCES:
       return {
-        ...state,
+        ...stateAuth,
         loading: false,
         logged: true
       };
     case types.LOG_FAIL:
       return {
-        ...state,
-        error: action.payload
+        ...stateAuth,
+        error: true
       };
     default:
       return {
-        state
+        stateAuth
       };
   }
 };

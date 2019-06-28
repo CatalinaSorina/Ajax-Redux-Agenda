@@ -1,33 +1,104 @@
+html {
+  background-color: rgb(14, 50, 83);
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  font: 1.5rem Courier;
 }
 
-.App-link {
-  color: #61dafb;
+a {
+  color: rgb(14, 50, 83);
+  background: white;
+  text-decoration: none;
+  padding: 0.5rem;
+  margin: 1rem;
+}
+a:hover {
+  color: darkred;
+  background: rgb(252, 198, 98);
+}
+a:active {
+  background: pink;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 20rem;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.agenda,
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25rem;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.auth input {
+  border: none;
+  background: rgb(154, 206, 255);
+  padding: 0.5rem;
+  margin: 0.5rem;
+  text-align: center;
+  outline: none;
+}
+.auth button {
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  outline: none;
+}
+.auth button:hover {
+  color: yellow;
+}
+
+.modify {
+  background: none;
+  border: none;
+  color: orange;
+  border-radius: 20%;
+}
+.modify:hover {
+  color: darkorange;
+  background: rgb(221, 208, 183);
+}
+
+.delete {
+  background: none;
+  border: none;
+  color: lightcoral;
+  border-radius: 20%;
+}
+.delete:hover {
+  color: red;
+  background: rgb(218, 171, 171);
+}
+
+.modify:active,
+.delete:active {
+  background: rgb(20, 67, 110);
+  border: 0.1rem solid rgb(7, 23, 39);
+  outline: none;
+}
+
+.search {
+  font: inherit;
+  text-align: center;
+  outline: none;
+}
+
+.App span {
+  margin-bottom: 1rem;
 }
